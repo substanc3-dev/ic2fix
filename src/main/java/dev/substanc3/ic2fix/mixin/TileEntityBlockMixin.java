@@ -6,8 +6,11 @@ import dev.substanc3.ic2fix.helper.IEnergyStorageProvider;
 import ic2.api.energy.EnergyNet;
 import ic2.core.block.TileEntityBlock;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Direction;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -15,7 +18,9 @@ import team.reborn.energy.api.EnergyStorage;
 import team.reborn.energy.api.EnergyStorageUtil;
 
 @Mixin(TileEntityBlock.class)
-public class TileEntityBlockMixin {
+public abstract class TileEntityBlockMixin {
+    @Shadow public abstract Direction getFacing();
+
     // Try to push energy from generators into the TR energy system every tick
     @Inject(method = "tick()V", at=@At("TAIL"), remap = false)
     private void pushEnet(CallbackInfo ci)
@@ -57,5 +62,15 @@ public class TileEntityBlockMixin {
 
             energyStoreManager.setEnergy(new IC2EnergyStorage(entity));
         }
+    }
+
+    // Make sure a proper facing update is always propagated on placement
+    @Inject(method="onPlaced(Lnet/minecraft/item/ItemStack;Lnet/minecraft/entity/LivingEntity;Lnet/minecraft/util/math/Direction;)V", at=@At("TAIL"))
+    private void placedHook(ItemStack par1, LivingEntity par2, Direction par3, CallbackInfo ci)
+    {
+        var teb = ((TileEntityBlockAccessor)this);
+        var facing = this.getFacing();
+        teb.setFacing((byte)facing.getOpposite().ordinal());
+        teb.callSetFacing(facing);
     }
 }
