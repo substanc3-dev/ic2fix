@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "ic2fix",
+  "version": "${version}",
+  "name": "IC2Fix",
+  "description": "Fixes the countless issues in IC2",
+  "authors": [
+    "substanc3"
+  ],
+  "contact": {
+    "sources": "https://github.com/substanc3-dev/ic2fix"
+  },
+  "license": "ISC",
+  "icon": "assets/ic2fix/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.substanc3.ic2fix.IC2FixMod"
+    ]
+  },
+  "mixins": [
+    "ic2fix.mixins.json"
+  ],
+  "accessWidener" : "ic2fix.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "ic2": ">=2.9.21+ex119"
+  },
+  "suggests": {
+    "wthit": ">=5.13.3"
+  }
+}

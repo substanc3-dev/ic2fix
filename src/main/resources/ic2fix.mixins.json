@@ -1,0 +1,27 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.substanc3.ic2fix.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "AbstractDamageableReactorComponentMixin",
+    "BlockEntityMixin",
+    "BlockTileEntityAccessor",
+    "BlockTileEntityMixin",
+    "Ic2BlockEntitiesMixin",
+    "Ic2FluidAccessor",
+    "Ic2FluidMixin",
+    "ItemArmorFluidTankMixin",
+    "ItemReactorHeatStorageMixin",
+    "ItemTreetapMixin",
+    "StillAccessor",
+    "TileEntityBlockAccessor",
+    "TileEntityBlockMixin"
+  ],
+  "client": [
+    "TranslationStorageMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "ic2fix:plugin": {
+    "initializer": "dev.substanc3.ic2fix.waila.WailaPlugin",
+    "side": "client"
+  }
+}
