@@ -14,6 +14,9 @@
   "icon": "assets/ic2fix/icon.png",
   "environment": "*",
   "entrypoints": {
+    "main": [
+      "dev.substanc3.ic2fix.IC2FixMod"
+    ],
     "client": [
       "dev.substanc3.ic2fix.IC2FixMod"
     ]
